@@ -259,49 +259,44 @@ class item {
 			$query->execute();
 			$verif= $query->fetchObject();
 			
+			$result = '';
+			
 			if ($verif->total > 0){
 			
 				$date_item = strtotime($items['date_item']);
 				$pid = $items['id_ann'];
 				$img = self::ShowImg($id_ann);
 				$nbImg = $img['nb'] - 1;
-			?>
-					<li class="list-group-item">
-						<h2 class="ann_titre"> <?php echo $items['titre']; ?></h2>
-						<div class="big_ann_img">
-							<p>Publié le <?php echo date( 'd M Y à H:i.', $date_item ) ?></p>
-							<div id="ImageSlider" class="carousel slide" data-ride="carousel">
-								<ol class="carousel-indicators">
-							<?php
-							for ($i=0; $i <= $nbImg; $i++) {
-								if ($i == 0){
-									echo '<li data-target="#ImageSlider" data-slide-to="'.$i.'" class="active"></li>';
-								} else {
-									echo '<li data-target="#ImageSlider" data-slide-to="'.$i.'"></li>';
-								}
-							}
-							?>
-								</ol>
-								<div class="carousel-inner" role="listbox">
-							<?php
-							for ($i=0; $i <= $nbImg ; $i++) {
-								if ($i == 0){
-									echo'
-									<div class="carousel-item active">
+				
+				$result .= '<li class="list-group-item">
+								<h2 class="ann_titre">'.$items['titre'].'</h2>
+								<div class="big_ann_img">
+									<p>Publié le '.date( 'd M Y à H:i.', $date_item ).'</p>
+									<div id="ImageSlider" class="carousel slide" data-ride="carousel">
+										<ol class="carousel-indicators">';
+										
+				for ($i=0; $i <= $nbImg; $i++) {
+					if ($i == 0){
+						$result .= '<li data-target="#ImageSlider" data-slide-to="'.$i.'" class="active"></li>';
+					} else {
+						$result .= '<li data-target="#ImageSlider" data-slide-to="'.$i.'"></li>';
+					}
+				}
+				$result .= '</ol>';
+				$result .= '<div class="carousel-inner" role="listbox">';
+
+				for ($i=0; $i <= $nbImg ; $i++) {
+					if ($i == 0){
+						$result .= '<div class="carousel-item active">
 										<img id="ImageOnSlider" class="d-block img-fluid" src="./uploads/' . $img[$i][0] .'" alt="Image principale">
-									</div>
-									';
-								} else {
-									echo '
-									<div class="carousel-item">
+									</div>';
+					} else {
+						$result .= '<div class="carousel-item">
 										<img id="ImageOnSlider" class="d-block img-fluid" src="./uploads/' . $img[$i][0] .'">
-									</div>
-									';
-								}
-							}
-							?>
-							
-							</div>
+									</div>';
+					}
+				}
+				$result .= '</div>
 							<a class="carousel-control-prev" href="#ImageSlider" role="button" data-slide="prev">
 								<span class="fa fa-chevron-left"  title="Précédent"></span>
 							</a>
@@ -310,27 +305,55 @@ class item {
 								
 							</a>
 						</div>
-							
 						</div>
 						<div class="ann_cont">
 							<ul class="item_info">
 								<li class="list-group-item">
-									<h2 class="ann_price">Prix : <?php echo $items['prix'] ?> € </h2>
-									<button class="btn btn-primary btn-lg item-offer" type="submit">Faire une offre</button>
+									<h2 class="ann_price">Prix : '.$items['prix'].' € </h2>
+									<button class="btn btn-primary btn-lg offre_button">Faire une offre</button>
 								</li>
 								<li class="list-group-item">
-									<p class="ann_ville">Ville : <?php echo $items['id_ville'] ?></p>
+									<p class="ann_ville">Ville : '.$this->getVille($items['id_ville']).'</p>
 								</li>
 							</ul>
 							<p>Description : </p>
-							<p class="ann_desc"> <?php echo $items['description'] ?> </p>
+							<p class="ann_desc"> '.$items['description'].' </p>
 						</div>
-					</li>
-			<?php
+					</li>';
+					
+				$result .= '
+		<div class="offre-form">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="form-group">
+						<label>Entrez votre prix</label>
+						<div class="input-group">
+							<input type="text" name="prix-offre" class="form-control"/>
+							<span class="input-group-addon">€</span>
+						</div>
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+				</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="form_message">Message</label>
+						<textarea id="form_message" name="message" class="form-control" placeholder="Accompagnez votre offre d\'un message." rows="4" required="required"></textarea>
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<input class="btn btn-success btn-send" value="Validé mon offre">
+				</div>
+			</div>
+		</div>';
 			}
 			else {
-				echo 'Page introuvable.';
+				$result .= 'Page introuvable.';
 			}
+			
+			return $result;
 			
 		} catch (PDOException $e) {
 			exit($e->getMessage());
@@ -373,6 +396,23 @@ class item {
 			$query->execute();
 			
 			$like_num = $query->rowCount();
+			
+			return $like_num>0?TRUE:FALSE;
+		} catch (PDOException $e) {
+			exit($e->getMessage());
+		}
+	}
+	
+	public function getVille($id){
+		try {
+			$db = DB();
+			$query = $db->prepare("SELECT Nom_Ville FROM ville WHERE id_ville=:id");
+			$query->bindParam("id", $id, PDO::PARAM_STR);
+			$query->execute();
+			
+			$ville = $query->fetch();
+			
+			return $ville["Nom_Ville"];
 			
 			return $like_num>0?TRUE:FALSE;
 		} catch (PDOException $e) {

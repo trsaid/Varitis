@@ -51,7 +51,7 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 
 <?php 
 if (isset($_GET['ann'])){
-	$item->ShowAnn($_GET['ann']);
+	echo $item->ShowAnn($_GET['ann']);
 }
 else{
 ?>
@@ -110,6 +110,7 @@ else{
 </div>
 	
 	<? include 'script.php' ?>
+	 <script defer src="assets/js/offre.js"></script>
 	 <script defer src="assets/js/like.js"></script>
 	
 </body>

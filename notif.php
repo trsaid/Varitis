@@ -1,6 +1,5 @@
 <?php
 session_start();
-// if (isset($_POST["view"])) {
 if (isset($_SESSION['id_me']) && isset($_POST["view"])) {
 	require __DIR__ . '/include/item.class.php';
 	require __DIR__ . '/include/membre.class.php';
