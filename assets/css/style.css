@@ -1,0 +1,373 @@
+html, body{
+	height: 100%;
+}
+body{
+	background: #C57D36CC;
+}
+
+.container{
+	background: #F9F7F7;
+	margin: 0 auto;
+	padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+	box-shadow: 3px 3px 18px 3px rgba(140,140,140,0.7);
+}
+
+.container-cont{
+	min-height: 37.5rem;
+	min-width: 20rem;
+	/* min-height: 100%; */
+    /* height: 100%; */
+}
+.errMsg{
+	position: absolute;
+	top: 250px;
+	z-index: 999;
+	text-align: center;
+	min-width: 100%;
+}
+.errBlock{
+	background: rgba(140,140,140,0.7);
+	position: absolute;
+	z-index: 999;	
+	height: 100%;
+	width: 100%;
+}
+
+/* Page achat */
+.ann_grp, .ann_grp:hover {
+    color: #292b2c;
+	position: relative;
+}
+.ann_grp:hover {
+	border-radius: 20px;
+	box-shadow: 3px 3px 18px 3px rgba(140,140,140,0.7);
+	z-index: 1000;
+}
+
+.ann_cont{
+	position: relative;
+	float: left;
+	width: 75%;
+	padding: 0 0 0 20px;
+	padding: 0 0 0 2rem;
+}
+
+.ann_img{
+	position: relative;
+	overflow: hidden;
+	float: left;
+	width: 182px;
+	height: 124px;
+	border:solid 2px #c3c3c3;
+}
+#ImageOnSlider{
+	max-height: 455px;
+	max-width: 100%;
+	margin: auto !important;
+}
+.ann_date {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.ann_titre, .ann_ville, .ann_desc, .ann_date {
+	text-decoration: none;
+    color: #000;
+}
+.ann_price {
+	text-decoration: none;
+    color: #cc464b;
+}
+
+.big_ann_img{
+	float: none;
+	position: relative;
+	height: 600px;
+	width: 100%;
+	cursor: pointer;
+	background: #f2f2f2;
+}
+.big_img{
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	max-width: 100%;
+	width: auto;
+	margin: auto;
+}
+
+.item_info{
+	margin-top: 30px;
+	margin-left: -70px;
+}
+
+.item-offer{
+	position: absolute;
+	top: 8px;
+	right: 5px;
+	z-index: 200;
+}
+
+.title-page{
+	text-align: center;
+}
+
+div.like {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+.like:hover {
+    color: #F67A4A;
+}
+.like .active{
+	color: #F67A4A;
+}
+
+/* Navbar */
+.Navbar{
+	margin-bottom: 5rem;
+}
+.navbar.nav-link:hover {
+	color: rgba(234, 32, 32, 0.7);
+}
+
+#nav-icon{
+	margin-right : 10px;
+	margin-left : 10px;
+}
+
+#nav-icon-text{
+	margin-left : 10px;
+	top : 10px;
+	font-family: fa5-proxima-nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+	font-size: 18px;
+}
+
+.bg-faded {
+    background-color: #fff;
+    box-shadow: 0 0 .625rem rgba(9, 9, 9, 0.5);
+}
+
+.navbar ul li:hover,
+body.home li.home .nav-link,
+body.sell li.sell .nav-link,
+body.buy li.buy .nav-link,
+body.search li.search .nav-link,
+body.notif li.notif .nav-link,
+body.account li.account .nav-link
+{ 
+	color: #f67a4a;
+	border-bottom: 4px solid #f67a4a;
+	
+}
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #f67a4a;
+	border-bottom: 0px;
+}
+
+/* Recherche index */
+
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+	
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .fa-search{
+    font-size: 23px;
+}
+
+/* Slider images*/
+.fa-chevron-left, .fa-chevron-right{
+	font-size : 30px;
+	color: rgb(108, 118, 255);
+}
+.carousel-indicators li{
+	bottom: -50px;
+	max-width: 70px;
+	height: 10px;
+	background-color: rgb(108, 118, 255, 0.2);
+	
+}
+.carousel-indicators .active{
+	background-color: rgb(108, 118, 255);	
+}
+
+/* Page profile */
+.card-info {
+    background-color: #fff;
+    border-color: rgba(0,0,0,.125);
+}
+
+/* Upload */
+.upload-zone, .uploaded-img{
+	height: 152px;
+	width: 170px;
+	border: 4px dashed #BBBBBB;
+	margin-right: 40px;
+}
+.upload-zone{
+	border: 4px dashed #BBBBBB;
+}
+.label-file{
+	cursor: pointer;
+}
+.label-label-file {
+    /* color: #00b1ca; */
+    font-weight: bold;
+	/* margin: 0 0 0 7px; */
+	text-align: center;
+}
+.label-file:hover {
+    color: #25a5c4;
+}
+#fileToUpload {
+    display: none;
+}
+
+.upload-img{
+	height: 70px;
+	width: 70px;
+	margin: 40px 0 10px 0;
+}
+.uploaded-img{
+	line-height: 148px;
+	margin: 1em 0 0 3em;
+	border-radius: .25rem;
+	border: solid 1px #25a5c4;
+	background-color: #F2F2F2;
+}
+.uploaded-img-show{
+	max-height: 100%;
+	max-width: 100%;
+}
+.uploaded-del{
+	position: absolute;
+	bottom: 5%;
+	right: 5%;
+	font-size: 22px;
+}
+.uploaded-zoom{
+	position: absolute;
+	bottom: 5%;
+	right: 20%;
+	font-size: 22px;
+}
+.uploaded-zoom:hover, .uploaded-del:hover{
+	color: #F67A4A;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+/* NotifyJS */
+.notifyjs-container {
+    min-width: 300px;
+    text-align: center;
+}
+/* Pagination */
+.pagination{
+	padding-top : 10px;
+	margin: auto;
+    width: 50%;
+}
+
+.page-link {
+	color :#F67A4A;
+}
+
+.page-item.active .page-link {
+	background-color :#F67A4A;
+	border-color :#F67A4A;
+}
+
+/* Notifications */
+
+#notification_li {
+	position: relative
+}
+#notificationContainer {
+	background-color: #fff;
+	border: 1px solid rgba(100, 100, 100, .4);
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+	overflow: visible;
+	position: absolute;
+	top: 60px;
+	margin-left: -182px;
+	width: 400px;
+	z-index: -1;
+	display: none;
+}
+/* Popup Arrow */
+#notificationContainer:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	color: transparent;
+	border: 10px solid black;
+	border-color: transparent transparent #E1DFDF;
+	margin-top: -20px;
+	margin-left: 188px;
+}
+#notificationTitle {
+	font-weight: bold;
+	padding: 8px;
+	font-size: 13px;
+	background-color: #E1DFDF;
+	position: fixed;
+	z-index: 1000;
+	width: 398px;
+	border-bottom: 1px solid #dddddd;
+}
+#notificationsBody {
+	padding: 33px 0px 0px 0px !important;
+	min-height: 300px;
+}
+#notificationFooter {
+	background-color: #e9eaed;
+	text-align: center;
+	font-weight: bold;
+	padding: 8px;
+	font-size: 12px;
+	border-top: 1px solid #dddddd;
+}
+.notif-lu {
+	position: absolute;
+	top: 5px;
+	right: 30px;
+	font-size: 20px;
+}
+
+.notif-lu:hover {
+	color :#F67A4A;
+	cursor: pointer;
+}
