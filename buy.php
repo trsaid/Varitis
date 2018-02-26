@@ -8,6 +8,7 @@ $db = DB();
 // Integration de la class item
 require __DIR__ . '/include/item.class.php';
 $item = new item();
+require __DIR__ . '/include/membre.class.php';
 
 
 $res_par_page = 5; // Nombre de résultats par pages.
@@ -47,67 +48,177 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 	</div>
 </head>
 <body class="buy">
-<div class="container">
-
-<?php 
-if (isset($_GET['ann'])){
-	echo $item->ShowAnn($_GET['ann']);
-}
-else{
-?>
-	<div class="jumbotron">
-		<div class="col-sm-8 mx-auto">
-			<h1 class="title-page">Liste des annonce</h1>
-		</div>
-	</div>
-	<ul class="list-group">
-		<?php $item->ShowList($start_page, $res_par_page); ?>
-	</ul>
-	<nav aria-label="Liste des pages">
-		<ul class="pagination">
-			<?php
-			$page_preced	= $page - 1; // Page précédente.
-			$page_suiv		= $page + 1; // Page suivante.
+	<div class="container">
+	
+	<?php 
+		if (isset($_GET['ann'])){
 			
-			// Premier objet de la pagination.
-			if(($page - 4) < 1){
-				$first_page = 1;
-			}else{
-				$first_page = $page - 4;
-			}
-			// Toujours afficher 9 pages.
-			if($page < 5){
-				$max_pagination = 9 - $page;
-			}
-			// Dernier objet de la pagination.
-			if (($page + $max_pagination) <= $max_page){
-				$max_page_list = $page + $max_pagination;
-			}else{
-				$max_page_list = $max_page;
-			}
-
-			// Affichage de la pagination.
-			if($page > 1){
-				echo '<li class="page-item"><a class="page-link" href="?page=1"> <i class="fas fa-angle-double-left "></i> </a></li>';
-				echo '<li class="page-item"><a class="page-link" href="?page='.$page_preced.'"> <i class="fas fa-angle-left"></i> </a></li>';
-			}
-			for ($i = $first_page; $i <= $max_page_list ; $i++) {
-				if($i == $page){
-					echo '<li class="page-item active"><a class="page-link" href="?page='.$i.'">'.$i.'</a></li>';
-				}else{	
-					echo '<li class="page-item"><a class="page-link" href="?page='.$i.'">'.$i.'</a></li>';
-				}
-			}
-			if($page < $max_page){
-				echo '<li class="page-item"><a class="page-link" href="?page='.$page_suiv.'"> <i class="fas fa-angle-right"></i> </a></li>';
-				echo '<li class="page-item"><a class="page-link" href="?page='.$max_page.'"> <i class="fas fa-angle-double-right "></i> </a></li>';
-			}
-			?>
-		</ul>
-	</nav>
-<?php 
-} ?>
-</div>
+			$id_ann = $_GET['ann'];
+			$items = $item->ShowAnn($id_ann);
+			
+			$date_item = strtotime($items['date_item']);
+			$pid = $items['id_ann'];
+			$img = $item->ShowImg($id_ann);
+			$nbImg = $img['nb'] - 1;
+			$membre = new Membre();
+			
+	?>
+			<li class="list-group-item">
+				<h2 class="ann_titre"><?php echo $items['titre'] ?></h2>
+				<div class="big_ann_img">
+					<p>Publié le <?php echo date( 'd M Y à H:i.', $date_item ) ?></p>
+					<div id="ImageSlider" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<?php
+								for ($i=0; $i <= $nbImg; $i++) {
+									if ($i == 0){
+										echo '<li data-target="#ImageSlider" data-slide-to="'.$i.'" class="active"></li>';
+									} else {
+										echo '<li data-target="#ImageSlider" data-slide-to="'.$i.'"></li>';
+									}
+								}
+							?>
+						</ol>
+						<div class="carousel-inner" role="listbox">
+							<?php
+								for ($i=0; $i <= $nbImg ; $i++) {
+									if ($i == 0){
+										echo '<div class="carousel-item active">
+														<img id="ImageOnSlider" class="d-block img-fluid" src="./uploads/' . $img[$i][0] .'" alt="Image principale">
+													</div>';
+									} else {
+										echo '<div class="carousel-item">
+														<img id="ImageOnSlider" class="d-block img-fluid" src="./uploads/' . $img[$i][0] .'">
+													</div>';
+									}
+								}
+							?>
+						</div>
+						<a class="carousel-control-prev" href="#ImageSlider" role="button" data-slide="prev">
+							<span class="fa fa-chevron-left"  title="Précédent"></span>
+						</a>
+						<a class="carousel-control-next" href="#ImageSlider" role="button" data-slide="next">
+							<span class="fa fa-chevron-right"  title="Suivant"></span>
+						</a>
+					</div>
+				</div>
+			<div class="row">
+				<div class="ann_cont">
+					<ul class="item_info">
+						<li class="list-group-item">
+							<h2 class="ann_price">Prix : <?php echo $items['prix'] ?> €</h2>
+						</li>
+						<li class="list-group-item">
+							
+						</li>
+						<li class="list-group-item">
+							<p class="ann_ville">Ville : <?php echo $item->getVille($items['id_ville']) ?></p>
+						</li>
+						<li class="list-group-item">
+							<p class="ann_desc_title">Description</p>
+							<p class="ann_desc"> </br><?php echo $items['description'] ?> </p>
+						</li>
+					</ul>
+				</div>
+				<div class='card card-profile text-center'>
+					<div class='card-block'>
+						<h4 class='card-title'>
+							<?php echo $membre->getUsername($items['id_me']); ?>
+							<small>Note utilisateur ?</small>
+						</h4>
+						<img alt='' class='card-img-profile' src='assets/images/user.png'>
+						<div class='card-links'>
+							<button class="btn btn-primary btn-lg offre_button">Faire une offre</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			</li>
+			<div class="offre-form">
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Entrez votre prix</label>
+							<div class="input-group">
+								<input type="text" name="prix-offre" class="form-control"/>
+								<span class="input-group-addon">€</span>
+							</div>
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="form_message">Message</label>
+							<textarea id="form_message" name="message" class="form-control" placeholder="Accompagnez votre offre d'un message." rows="4" required="required"></textarea>
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<input class="btn btn-success btn-send" value="Validé mon offre">
+					</div>
+				</div>
+			</div>
+		
+	<?php
+		}
+		else{
+	?>
+			<div class="jumbotron">
+				<div class="col-sm-8 mx-auto">
+					<h1 class="title-page">Liste des annonce</h1>
+				</div>
+			</div>
+			<ul class="list-group">
+				<?php $item->ShowList($start_page, $res_par_page); ?>
+			</ul>
+			<nav aria-label="Liste des pages">
+				<ul class="pagination">
+					<?php
+					$page_preced	= $page - 1; // Page précédente.
+					$page_suiv		= $page + 1; // Page suivante.
+					
+					// Premier objet de la pagination.
+					if(($page - 4) < 1){
+						$first_page = 1;
+					}else{
+						$first_page = $page - 4;
+					}
+					// Toujours afficher 9 pages.
+					if($page < 5){
+						$max_pagination = 9 - $page;
+					}
+					// Dernier objet de la pagination.
+					if (($page + $max_pagination) <= $max_page){
+						$max_page_list = $page + $max_pagination;
+					}else{
+						$max_page_list = $max_page;
+					}
+		
+					// Affichage de la pagination.
+					if($page > 1){
+						echo '<li class="page-item"><a class="page-link" href="?page=1"> <i class="fas fa-angle-double-left "></i> </a></li>';
+						echo '<li class="page-item"><a class="page-link" href="?page='.$page_preced.'"> <i class="fas fa-angle-left"></i> </a></li>';
+					}
+					for ($i = $first_page; $i <= $max_page_list ; $i++) {
+						if($i == $page){
+							echo '<li class="page-item active"><a class="page-link" href="?page='.$i.'">'.$i.'</a></li>';
+						}else{	
+							echo '<li class="page-item"><a class="page-link" href="?page='.$i.'">'.$i.'</a></li>';
+						}
+					}
+					if($page < $max_page){
+						echo '<li class="page-item"><a class="page-link" href="?page='.$page_suiv.'"> <i class="fas fa-angle-right"></i> </a></li>';
+						echo '<li class="page-item"><a class="page-link" href="?page='.$max_page.'"> <i class="fas fa-angle-double-right "></i> </a></li>';
+					}
+					?>
+				</ul>
+			</nav>
+	<?php 
+		}
+	?>
+	</div>
 	
 	<? include 'script.php' ?>
 	 <script defer src="assets/js/offre.js"></script>

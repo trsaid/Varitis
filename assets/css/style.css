@@ -47,9 +47,8 @@ body{
 .ann_cont{
 	position: relative;
 	float: left;
-	width: 75%;
-	padding: 0 0 0 20px;
-	padding: 0 0 0 2rem;
+	 width: 650px;
+	padding: 0 0 0 44px;
 }
 
 .ann_img{
@@ -75,6 +74,11 @@ body{
 	text-decoration: none;
     color: #000;
 }
+.ann_desc_title{
+	font-size: 20px;
+	font-weight:bold;
+}
+
 .ann_price {
 	text-decoration: none;
     color: #cc464b;
@@ -87,6 +91,8 @@ body{
 	width: 100%;
 	cursor: pointer;
 	background: #f2f2f2;
+	border: solide 1px #000;
+	box-shadow: 3px 3px 18px 3px rgba(140,140,140,0.4);
 }
 .big_img{
 	display: block;
@@ -103,13 +109,6 @@ body{
 .item_info{
 	margin-top: 30px;
 	margin-left: -70px;
-}
-
-.offre_button{
-	position: absolute;
-	top: 8px;
-	right: 5px;
-	z-index: 200;
 }
 
 .title-page{
@@ -380,4 +379,42 @@ body.account li.account .nav-link
 	background-color: #fff;
 	border: 1px solid rgba(0,0,0,.125);
 	padding: .75rem 1.25rem;
+}
+
+/* Profil */
+
+.card-profile {
+	width: 340px;
+	margin: 30px 0 0 50px;
+	background-color: #fff;
+	border-radius: 0;
+	border: solide 1px #000;
+	box-shadow: 3px 3px 18px 3px rgba(140,140,140,0.4);
+}
+.card-profile .card-img-top {
+  border-radius: 0;
+}
+.card-profile .card-img-profile {
+  max-width: 140px;
+  border-radius: 50%;
+  margin-bottom: 35px;
+  border: 5px solid #e6e5e1;
+}
+.card-profile .card-title {
+  margin-bottom: 50px;
+}
+.card-profile .card-title small {
+  display: block;
+  font-size: .6em;
+  margin-top: .2em;
+}
+.card-profile .card-links {
+  margin-bottom: 25px;
+}
+.card-profile .card-links .fa {
+  margin: 0 1em;
+  font-size: 1.6em;
+}
+.card-profile .card-links .fa:focus, .card-profile .card-links .fa:hover {
+  text-decoration: none;
 }
