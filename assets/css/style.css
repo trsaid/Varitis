@@ -5,6 +5,10 @@ body{
 	background: #D0975E;
 }
 
+a:link {
+    text-decoration: none;
+}
+
 .container{
 	background: #F9F7F7;
 	margin: 0 auto;
@@ -45,10 +49,11 @@ body{
 }
 
 .ann_cont{
-	position: relative;
-	float: left;
-	 width: 650px;
-	padding: 0 0 0 44px;
+	width: 650px;
+	padding: 0 0 0 15px;
+	margin: 30px 0 0 15px;
+	background-color: #fff;
+	border-radius: 5px;
 }
 
 .ann_img{
@@ -67,21 +72,31 @@ body{
 .ann_date {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 10px;
 }
 
 .ann_titre, .ann_ville, .ann_desc, .ann_date {
-	text-decoration: none;
     color: #000;
+	margin: 20px 0 20px 0;
+	font-size: 20px;
 }
+
+.ann_desc_in{
+	color: #000;
+	font-size: 17px;
+	margin: 0 0 0 15px;
+}
+
 .ann_desc_title{
 	font-size: 20px;
 	font-weight:bold;
 }
 
 .ann_price {
-	text-decoration: none;
     color: #cc464b;
+}
+.ann_date_in{
+	text-align: right;
 }
 
 .big_ann_img{
@@ -91,8 +106,6 @@ body{
 	width: 100%;
 	cursor: pointer;
 	background: #f2f2f2;
-	border: solide 1px #000;
-	box-shadow: 3px 3px 18px 3px rgba(140,140,140,0.4);
 }
 .big_img{
 	display: block;
@@ -104,6 +117,11 @@ body{
 	max-width: 100%;
 	width: auto;
 	margin: auto;
+}
+
+.ville_marker{
+	padding: 0 5px 0 0;
+	font-size: 30px;
 }
 
 .item_info{
@@ -385,7 +403,7 @@ body.account li.account .nav-link
 
 .card-profile {
 	width: 340px;
-	margin: 30px 0 0 50px;
+	margin: 30px 0 0 67px;
 	background-color: #fff;
 	border-radius: 0;
 	border: solide 1px #000;
@@ -415,6 +433,10 @@ body.account li.account .nav-link
   margin: 0 1em;
   font-size: 1.6em;
 }
-.card-profile .card-links .fa:focus, .card-profile .card-links .fa:hover {
-  text-decoration: none;
+
+.divider{
+	height: 1px;
+	margin: .5rem 0;
+	overflow: hidden;
+	background-color: #dadada;
 }

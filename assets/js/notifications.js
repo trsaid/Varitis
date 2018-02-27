@@ -38,7 +38,7 @@ $(document).ready(function() {
 	// Actualisation toute les 5 secondes
 	setInterval(function() {
 		load_unseen_notification();;
-	}, 5000);
+	}, 20000);
 	// Ouverture de la liste des notif
 	$(".notif").click(function() {
 		$("#notificationContainer").fadeToggle(300);

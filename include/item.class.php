@@ -124,7 +124,7 @@ class item {
 								<h2 class="ann_titre">'. $items['titre'] .'</h2>
 								<p class="ann_ville">'. $ville['Nom_ville'] .'</p>
 								<p class="ann_desc">'. self::textLimit($items['description']) .'</p>
-								<p class="ann_date">Le '. date( 'd M Y à H:i.', $date_item ) .'</p>
+								<p class="ann_date">'. $this->AffDate($date_item ) .'</p>
 								<h2 class="ann_price">'. $items['prix'] .' € </h2>
 							</div>
 						</li>

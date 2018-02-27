@@ -64,9 +64,7 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 			
 	?>
 			<li class="list-group-item">
-				<h2 class="ann_titre"><?php echo $items['titre'] ?></h2>
 				<div class="big_ann_img">
-					<p>Publié le <?php echo date( 'd M Y à H:i.', $date_item ) ?></p>
 					<div id="ImageSlider" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
 							<?php
@@ -103,22 +101,24 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 					</div>
 				</div>
 			<div class="row">
+			
 				<div class="ann_cont">
-					<ul class="item_info">
-						<li class="list-group-item">
-							<h2 class="ann_price">Prix : <?php echo $items['prix'] ?> €</h2>
-						</li>
-						<li class="list-group-item">
-							
-						</li>
-						<li class="list-group-item">
-							<p class="ann_ville">Ville : <?php echo $item->getVille($items['id_ville']) ?></p>
-						</li>
-						<li class="list-group-item">
-							<p class="ann_desc_title">Description</p>
-							<p class="ann_desc"> </br><?php echo $items['description'] ?> </p>
-						</li>
-					</ul>
+					<h2 class="ann_titre"><?php echo $items['titre'] ?></h2>
+					<p class="ann_date_in">Publié <?php echo $item->AffDate($date_item) ?></p>
+					
+					<div class="divider"></div>
+					<h2 class="ann_price">Prix : <?php echo $items['prix'] ?> €</h2>
+					<div class="ann_ville_grp">
+						<p class="ann_ville">
+							<i class="fas fa-map-marker-alt ville_marker"></i>
+							Ville : <?php echo $item->getVille($items['id_ville']) ?>
+						</p>
+					</div>
+					<div class="description">
+						<p class="ann_desc_title">Description</p>
+						<div class="divider"></div>
+						<p class="ann_desc_in"> </br><?php echo $items['description'] ?> </p>
+					</div>
 				</div>
 				<div class='card card-profile text-center'>
 					<div class='card-block'>
@@ -134,13 +134,13 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 				</div>
 			</div>
 			</li>
-			<div class="offre-form">
+			<form method="post" class="offre-form">
 				<div class="row">
 					<div class="col-md-2">
 						<div class="form-group">
 							<label>Entrez votre prix</label>
 							<div class="input-group">
-								<input type="text" name="prix-offre" class="form-control"/>
+								<input type="text" name="prix-offre" data-ann-id="<?php echo $id_ann; ?>" class="form-control prix-offre" required="required"/>
 								<span class="input-group-addon">€</span>
 							</div>
 							<div class="help-block with-errors"></div>
@@ -151,15 +151,14 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="form_message">Message</label>
-							<textarea id="form_message" name="message" class="form-control" placeholder="Accompagnez votre offre d'un message." rows="4" required="required"></textarea>
-							<div class="help-block with-errors"></div>
+							<textarea name="form_message" class="form-control message-offre" placeholder="Accompagnez votre offre d'un message." rows="4" required="required"></textarea>
 						</div>
 					</div>
 					<div class="col-md-12">
-						<input class="btn btn-success btn-send" value="Validé mon offre">
+						<input type="submit" name="post" id="post" class="btn btn-success btn-send" value="Validé mon offre">
 					</div>
 				</div>
-			</div>
+			</form>
 		
 	<?php
 		}

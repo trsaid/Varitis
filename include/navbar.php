@@ -35,7 +35,9 @@
 			</li>
 		</ul>
 		<!-- Sinon : Bouton Mon compte -->
-		<?php } else { ?>
+		<?php } else { 
+			$membre = new Membre();
+		?>
 		<ul class="navbar-nav mr-sm-2">
 			<li class="nav-item search" id="nav-icon">
 				<a class="nav-link" href="search.php"><i class="fas fa-search fa-2x"> </i></a>
@@ -61,7 +63,7 @@
 			</div>
 			<li class="nav-item account" id="nav-icon">
 				<div class="input-group">
-					<a class="nav-link" href="profile.php"><i class="far fa-address-card fa-2x"></i><span id="nav-icon-text">Mon compte</span></a>
+					<a class="nav-link" href="profile.php"><i class="far fa-address-card fa-2x"></i><span id="nav-icon-text"><?php echo $membre->getUsername($_SESSION['id_me']); ?></span></a>
 					<!--<button class="btn btn-outline-success" type="button" onclick="location.href='profile.php';"><i class="fa fa-address-card" ></i></i> Mon compte</button>-->
 				</div>
 			</li>
