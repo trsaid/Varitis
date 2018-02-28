@@ -16,11 +16,21 @@ $(document).ready(function() {
 		if ($('.prix-offre').val() != '' && $('.message-offre').val() != '') {
 			var offre_data = $(this).serialize();
 			var id_ann = $(".prix-offre").attr("data-ann-id");
+			var error = '';
 			$.ajax({
 				url: "offre-form-ajax.php",
 				method: "POST",
 				data: offre_data + "&id_ann=" + id_ann ,
 				success: function(data) {
+					if(data == 'error'){
+						$(".offreErr").addClass("alert alert-danger");
+						error = '<strong>Erreur : </strong> Vous ne pouvez pas faire une offre à votre propre annonce.';
+					}else{
+						$(".offreErr").addClass("alert alert-success");
+						error = 'Votre offre a été envoyée.';
+					}
+					$(".offreErr").html(error);
+					// $(".offreErr").after( "<span class='red'>Hello</span>" );
 					$('.offre-form')[0].reset();
 				}
 			});

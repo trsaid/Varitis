@@ -21,4 +21,27 @@ class offre {
 		}
 	}
 	
+	public function checkOffreur($id_ann){
+		try {
+			$db = DB();
+			$query = $db->prepare("
+									SELECT *
+									FROM annonce
+									WHERE id_ann=:id_ann
+									AND id_me=:id_me");
+			$query->bindParam("id_ann", $id_ann, PDO::PARAM_STR);
+			// ID de l'utilisateur.
+			$id_offreur = $_SESSION['id_me'];
+			$query->bindParam("id_me", $id_offreur, PDO::PARAM_STR);
+			$query->execute();
+			
+			if ($query->rowCount() > 0){
+				return true;
+			}
+			
+		} catch (PDOException $e) {
+			exit($e->getMessage());
+		}
+	}
+	
 }

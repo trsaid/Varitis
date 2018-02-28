@@ -54,11 +54,12 @@
 				<!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				</div> -->
 				<div id="notificationContainer">
-					<div id="notificationTitle">Notifications
-						<div class="notif-lu"><span class="fas fa-eye" data-toggle="tooltip" data-placement="bottom" title="Marquer tout comme lu"></span></div>
+					<div id="notificationTitle">
+						<a style="font-weight: bold;">Notifications</a>
+						<div class="notif-lu"><a href="#">Marquer tout comme lu</a></div>
 					</div>
 					<div id="notificationsBody" class="notifications"></div>
-					<div id="notificationFooter"><a href="#">Afficher plus</a></div>
+					<div id="notificationFooter"><a href="#">Afficher tout</a></div>
 				</div>
 			</div>
 			<li class="nav-item account" id="nav-icon">

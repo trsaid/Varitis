@@ -135,6 +135,7 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 			</div>
 			</li>
 			<form method="post" class="offre-form">
+						<div class="offreErr"></div>
 				<div class="row">
 					<div class="col-md-2">
 						<div class="form-group">

@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+require __DIR__ . '/include/db.php';
+$db = DB();
+require __DIR__ . '/include/membre.class.php';
 ?>
 <!doctype html>
 <html lang="fr">

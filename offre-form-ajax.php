@@ -11,7 +11,11 @@ if (isset($_SESSION['id_me']) && isset($_POST["form_message"])) {
 	$prix = $_POST["prix-offre"];
 	$text = $_POST["form_message"];
 	
-	$offre->faireOffre($id_ann, $prix, $text);
+	if(!$offre->checkOffreur($id_ann)){
+		$offre->faireOffre($id_ann, $prix, $text);
+	}else{
+		echo 'error';
+	}
 	
 }else{
 	header("HTTP/1.0 404 Not Found");
