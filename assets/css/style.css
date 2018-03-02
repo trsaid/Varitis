@@ -187,6 +187,10 @@ body.account li.account .nav-link
 	border-bottom: 0px;
 }
 
+.nav-notif{
+	top: 15px;
+}
+
 /* Recherche index */
 
 #custom-search-input{
@@ -425,14 +429,56 @@ body.account li.account .nav-link
 	padding: .75rem 1.25rem;
 }
 
+.offre_list{
+	width: 45%;
+	float:left;
+	min-height: 150px;
+	margin: 30px 50px 0 0;
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,.125);
+	position: relative;
+}
+
+.img-profile {
+	max-width: 50px;
+	border-radius: 50%;
+	margin: 0 10px 0 0;
+	border: 3px solid #e6e5e1;
+}
+.img-profile-offre {
+	max-width: 50px;
+	max-height: 50px;
+	border-radius: 50%;
+	margin: 10px 10px 35px 15px;
+	border: 3px solid #e6e5e1;
+}
+
+.offre-date{
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
+.offre-prix{
+	color: #cc464b;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 25px;
+}
+.offre-user{
+	margin: 20px 0 0 5px;
+}
+.offre-com{
+	margin: 60px 0 0 -80px;
+}
+
 /* Profil */
 
 .card-profile {
 	width: 340px;
 	margin: 30px 0 0 67px;
 	background-color: #fff;
-	border-radius: 0;
-	border: solide 1px #000;
+	border: 1px solid rgba(0,0,0,.125);
 	box-shadow: 3px 3px 18px 3px rgba(140,140,140,0.4);
 }
 .card-profile .card-img-top {

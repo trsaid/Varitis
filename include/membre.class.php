@@ -5,8 +5,6 @@ class Membre
 	/*
 	 * Inscription
 	 *
-	 * @param $name, $email, $username, $password
-	 * @return ID
 	 * */
 	public function Register($name, $email, $username, $password)
 	{
@@ -29,8 +27,6 @@ class Membre
 	/*
 	 * Check Username
 	 *
-	 * @param $username
-	 * @return boolean
 	 * */
 	public function isUsername($username)
 	{
@@ -52,8 +48,6 @@ class Membre
 	/*
 	 * Get Username
 	 *
-	 * @param $id
-	 * @return Membre username
 	 * */
 	public function getUsername($id)
 	{
@@ -76,8 +70,6 @@ class Membre
 	/*
 	 * Check Email
 	 *
-	 * @param $email
-	 * @return boolean
 	 * */
 	public function isEmail($email)
 	{
@@ -99,8 +91,6 @@ class Membre
 	/*
 	 * Login
 	 *
-	 * @param $username, $password
-	 * @return $mixed
 	 * */
 	public function Login($username, $password)
 	{
@@ -125,8 +115,6 @@ class Membre
 	/*
 	 * On récupere les infos de l'utilisateur
 	 *
-	 * @param $id_me
-	 * @return $mixed
 	 * */
 	public function UserDetails($id_me)
 	{
@@ -138,6 +126,24 @@ class Membre
 			if ($query->rowCount() > 0) {
 				return $query->fetch(PDO::FETCH_OBJ);
 			}
+		} catch (PDOException $e) {
+			exit($e->getMessage());
+		}
+	}
+	
+	public function getUserImg($id_me){
+		try {
+			$db = DB();
+			$query = $db->prepare("SELECT name_img FROM profile_img WHERE user_id=:id_me");
+			$query->bindParam("id_me", $id_me, PDO::PARAM_STR);
+			$query->execute();
+			$result = $query->fetch();
+			if ($query->rowCount() > 0) {
+				$img = 'uploads/user/'.$result["name_img"];
+			}else{
+				$img = 'assets/images/user.png';
+			}
+			return $img;
 		} catch (PDOException $e) {
 			exit($e->getMessage());
 		}

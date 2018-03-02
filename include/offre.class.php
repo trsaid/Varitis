@@ -44,4 +44,44 @@ class offre {
 		}
 	}
 	
+	public function getOffres($id_ann){
+		try {
+			$db = DB();
+			$membre = new Membre();
+			$item = new item();
+			$query = $db->prepare("SELECT *
+									FROM offre o
+										INNER JOIN annonce a
+											ON o.id_ann = a.id_ann
+									WHERE id_me=:id_me
+									AND o.id_ann=:id_ann
+									ORDER BY id_off DESC LIMIT 5 ");
+			// ID de l'utilisateur.
+			$id_me = $_SESSION['id_me'];
+			$query->bindParam("id_me", $id_me, PDO::PARAM_STR);
+			$query->bindParam("id_ann", $id_ann, PDO::PARAM_STR);
+			$query->execute();
+			
+			$result = array();
+			
+			if ($query->rowCount() > 0){
+				$count = 0;
+				while($row = $query->fetch()) {
+					$count++;
+					$result["nom_offreur" . $count] = '<strong>'.$membre->getUsername($row["id_offreur"]).'</strong>';
+					$result["id_offreur" . $count] = $row["id_offreur"];
+					$result["price_offre" . $count] = $row["price_offre"];
+					$result["date_offre" . $count] = $item->AffDate($row["date_offre"]);
+					$result["com_offre" . $count] = $row["com_offre"];
+				}
+					$result["nbr"] = $count;
+			} else {
+					$result[] = 'Aucune notification.';
+			}
+			return $result;
+		} catch (PDOException $e) {
+			exit($e->getMessage());
+		}
+	}
+	
 }

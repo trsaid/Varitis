@@ -9,6 +9,7 @@ $db = DB();
 require __DIR__ . '/include/item.class.php';
 $item = new item();
 require __DIR__ . '/include/membre.class.php';
+require __DIR__ . '/include/offre.class.php';
 
 
 $res_par_page = 5; // Nombre de résultats par pages.
@@ -21,7 +22,7 @@ if (isset($_GET["page"])) {
 	}
 } else {
 	$page = 1; 
-};
+}
 
 $max_pagination = 4;
 $start_page = ($page-1) * $res_par_page; // Page de départ.
@@ -48,7 +49,7 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 	</div>
 </head>
 <body class="buy">
-	<div class="container">
+	<div class="container" style="overflow: hidden">
 	
 	<?php 
 		if (isset($_GET['ann'])){
@@ -160,6 +161,23 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 					</div>
 				</div>
 			</form>
+			
+			<?php $offre = new offre();
+				$offre_list = $offre->getOffres($id_ann);
+				$nbr = $offre_list["nbr"];
+				for($i = 1; $i <= $nbr; $i++ ){
+					$user_img = $membre->getUserImg($offre_list["id_offreur".$i]);
+					echo '<div class="row offre_list">
+							
+								<img alt="" class="img-profile-offre" src="'.$user_img.'">'.
+									'<a class="offre-user">'.$offre_list["nom_offreur".$i].'</a>'.
+									'<span class="offre-prix">'.$offre_list["price_offre".$i].'€</span></br>'.
+									'<p class="offre-com">'.$offre_list["com_offre".$i] .'</p>'.
+									'<a class="offre-date">'. $offre_list["date_offre".$i].'</a>'.
+								'
+							</div>';
+				}
+			?>
 		
 	<?php
 		}
