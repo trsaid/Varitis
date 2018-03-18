@@ -162,7 +162,12 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 				</div>
 			</form>
 			
-			<?php $offre = new offre();
+			<?php if(isset($_SESSION['id_me'])){ ?>
+			<H1 class="offre-list-title">Liste des offres</H1>
+			<div class="divider"></div>
+			
+			<?php
+				$offre = new offre();
 				$offre_list = $offre->getOffres($id_ann);
 				$nbr = $offre_list["nbr"];
 				for($i = 1; $i <= $nbr; $i++ ){
@@ -177,6 +182,7 @@ $start_page = ($page-1) * $res_par_page; // Page de départ.
 								'
 							</div>';
 				}
+			}
 			?>
 		
 	<?php

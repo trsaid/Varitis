@@ -32,8 +32,8 @@ require __DIR__ . '/include/membre.class.php';
 		<div class="row">
 			<div class="col-md-12">
 				<div id="custom-search-input">
-					<div class="input-group col-md-13">
-						<input type="text" class="form-control input-lg" placeholder="Entrez un mot clé..." />
+					<div class="input-group col-md-13 search-bar">
+						<input type="text" class="form-control input-lg" autocomplete="off" placeholder="Entrez un mot clé..." />
 						<span class="input-group-btn">
 							<button class="btn btn-info btn-lg" type="button">
 								<i class="fa fa-search"></i>
@@ -43,9 +43,11 @@ require __DIR__ . '/include/membre.class.php';
 				</div>
 			</div>
 		</div>
+		<div class="result-search"></div>
 	</div>
 
 	<? include 'script.php' ?>
+	<script defer src="assets/js/search.js"></script>
 </body>
 
 </html>

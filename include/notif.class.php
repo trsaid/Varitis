@@ -36,7 +36,6 @@ class notif extends item {
 			$db = DB();
 			$membre = new Membre();
 			$item = new item();
-			// $query = $db->prepare("SELECT * FROM offre WHERE id_ann IN (SELECT id_ann FROM annonce WHERE id_me=:id_me) ORDER BY id_off DESC LIMIT 5 ");
 			$query = $db->prepare("SELECT *
 									FROM offre o
 										INNER JOIN annonce a
@@ -60,7 +59,6 @@ class notif extends item {
 					$result["status" . $count] = $row["status"];
 					$result["id_ann" . $count] = $row["id_ann"];
 					$result["id_off" . $count] = $row["id_off"];
-					// $result["com_offre" . $count] = $row["com_offre"];
 				}
 					$result["nbr"] = $count;
 			} else {
@@ -74,7 +72,6 @@ class notif extends item {
 	public function count_notif_non_lu(){
 		try {
 			$db = DB();
-			// $query = $db->prepare("SELECT id_off FROM offre WHERE status = 0 AND id_ann IN (SELECT id_ann FROM annonce WHERE id_me=:id_me)");
 			$query = $db->prepare("SELECT
 										id_off 
 									FROM

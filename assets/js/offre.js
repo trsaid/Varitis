@@ -22,7 +22,10 @@ $(document).ready(function() {
 				method: "POST",
 				data: offre_data + "&id_ann=" + id_ann ,
 				success: function(data) {
-					if(data == 'error'){
+					if (data == 'log'){
+						$(".offreErr").addClass("alert alert-danger");
+						error = '<strong>Erreur : </strong> Vous devez être connecté pour faire une offre.';
+					}else if(data == 'error'){
 						$(".offreErr").addClass("alert alert-danger");
 						error = '<strong>Erreur : </strong> Vous ne pouvez pas faire une offre à votre propre annonce.';
 					}else{
@@ -30,7 +33,6 @@ $(document).ready(function() {
 						error = 'Votre offre a été envoyée.';
 					}
 					$(".offreErr").html(error);
-					// $(".offreErr").after( "<span class='red'>Hello</span>" );
 					$('.offre-form')[0].reset();
 				}
 			});

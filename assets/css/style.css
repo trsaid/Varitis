@@ -471,6 +471,10 @@ body.account li.account .nav-link
 .offre-com{
 	margin: 60px 0 0 -80px;
 }
+.offre-list-title{
+	text-align: center;
+	padding: 20px 0 20px 0
+}
 
 /* Profil */
 
